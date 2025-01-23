@@ -16,17 +16,23 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.pedromoura.chatfirebase.presentation.navegation.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(navController: NavController) {
+fun LoginScreen(
+    loginViewModel: LoginViewModel = viewModel
+        (factory = LoginViewModelFactory(LocalContext.current)),
+            navController : NavController
+) {
 
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -84,10 +90,13 @@ fun LoginScreen(navController: NavController) {
                 .fillMaxSize()
                 .padding(bottom = 16.dp)
         )
-        
-        Button(onClick = {navController.navigate(Screen.Chat.route)}) {
+
+        Button(onClick = {
+
+            navController.navigate(Screen.Chat.route)
+        }) {
             Text(text = "Login")
-            
+
         }
     }
 
