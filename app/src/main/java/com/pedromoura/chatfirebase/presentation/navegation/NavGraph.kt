@@ -1,11 +1,10 @@
 package com.pedromoura.chatfirebase.presentation.navegation
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavDestination
-import androidx.navigation.NavGraph
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.pedromoura.chatfirebase.presentation.Chat.ChatScreen
 import com.pedromoura.chatfirebase.presentation.login.LoginScreen
 
 
@@ -22,6 +21,6 @@ fun NavGraph(startDestination: String = Screen.Login.route) {
 
     NavHost(navController = navController, startDestination = startDestination) {
         composable(Screen.Login.route) { LoginScreen(navController = navController)}
-        composable(Screen.Login.route) {}
+        composable(Screen.Chat.route) { ChatScreen()}
     }
 }

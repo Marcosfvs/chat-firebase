@@ -5,19 +5,18 @@ import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.CreationExtras
 import kotlinx.coroutines.launch
 
 class LoginViewModel(private val context: Context) : ViewModel() {
 
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("login_prefs", Context.MODE_PRIVATE)
 
-    var userId: String = ""
+    private var userId: String = ""
     var username: String = ""
     var password: String = ""
 
     fun saveCredentials(username: String, password: String){
-        userId = if(username == "username"){
+        userId = if(username == "userone"){
             "1"
         } else {
             "2"
@@ -26,8 +25,8 @@ class LoginViewModel(private val context: Context) : ViewModel() {
         viewModelScope.launch {
             with(sharedPreferences.edit()){
                 putString("USERID", userId)
-                putString("USERNAME", userId)
-                putString("PASSWORD", userId)
+                putString("USERNAME", username)
+                putString("PASSWORD", password)
                 apply()
             }
         }
